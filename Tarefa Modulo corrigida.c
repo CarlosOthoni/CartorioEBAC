@@ -3,36 +3,37 @@
 #include <locale.h> //bilbioteca de alocações de texto por região
 #include <string.h> // biblioteca de strings
 
-int registro() 																// FUNÇÃO REGISTRAR;
+int registro() 				        // FUNÇÃO REGISTRAR;
 {
 	setlocale(LC_ALL,"Portuguese");
-	char arquivo[40];						// variaveis tipo STRING de 40 caracteres 
+	char arquivo[40];						             // variaveis tipo STRING de 40 caracteres 
 	char cpf[40];
 	char nome[40];
 	char sobrenome[40];
 	char cargo[40];
-
+  	int opcao=0;
+ 	
 	
 	printf("Digite o CPF a ser cadastrado: ");
-	scanf("%s",cpf);	       			// %S_tring
+	scanf("%s",cpf);	       							// %S_tring
 			
-	strcpy(arquivo,cpf);				// Responsavel por copiar os valores das string associando o titulo do 'file' com a info 'cpf'
+	strcpy(arquivo,cpf);								// Responsavel por copiar os valores das string associando o titulo do 'file' com a info 'cpf'
 					
-	FILE *file;									// FILE 'função inata do software'		           	//cria o arquivo
-	file = fopen(arquivo, "a");			//alteração: de "w" para "a"		//  como o valor 'cpf' já foi colocado no titulo do arquivo, só precisamos atualizar o 'arq' colocando o cpf no primeiro espaço' cpf ,nome, sobrenome,cargo'
-	fprintf(file,cpf);							//salva o valor da variável
-	fclose(file);								//fecha o arquivo
+	FILE *file;											// FILE 'função inata do software'		           	//cria o arquivo
+	file = fopen(arquivo, "a");							//alteração: de "w" para "a"		//  como o valor 'cpf' já foi colocado no titulo do arquivo, só precisamos atualizar o 'arq' colocando o cpf no primeiro espaço' cpf ,nome, sobrenome,cargo'
+	fprintf(file,cpf);									//salva o valor da variável
+	fclose(file);										//fecha o arquivo
 		
-	file = fopen(arquivo,"a");					// "a" de ATUALIZAÇÃO
+	file = fopen(arquivo,"a");							// "a" de ATUALIZAÇÃO
 	fprintf(file,",");
 	fclose(file);
 		
 	printf("Digite o nome a ser cadastrado: ");
 	scanf("%s",nome);
 		
-	file = fopen(arquivo, "a");     // *** resumindo aqui : vá até os arquivos e abra o 'ARQUIVO' para atualização ("a")
-	fprintf(file,nome); 			//***leia o 'nome' e salve no arquivo 
-	fclose(file);					//***feche o arquivo d
+	file = fopen(arquivo, "a");    						 // *** resumindo aqui : vá até os arquivos e abra o 'ARQUIVO' para atualização ("a")
+	fprintf(file,nome); 								//***leia o 'nome' e salve no arquivo 
+	fclose(file);										//***feche o arquivo d
 		
 	file = fopen(arquivo,"a");
 	fprintf(file,",");
@@ -54,11 +55,29 @@ int registro() 																// FUNÇÃO REGISTRAR;
 		
 	file = fopen(arquivo,"a");
 	fprintf(file,cargo);
-	fclose(file);
+	fclose(file);	
+	
+	printf("\n Continuar registrando?\n");	
+	printf("Digite 1 para continuar \n");
+	printf("Digite 2 para voltar ao menu \n");				//retornar ao menu --------------------------------------------
+	system("pause");
+	scanf("%d",&opcao);
+	switch(opcao)
+	{
+		case 1:
+		registro();	
+		break;
+	case 2:
+ 		main();
+ 		break;
+	default: 
+		printf("Escolha uma das opções acima \n");
+		system("pause");
+		break;	
 		
-		
+	}
 }
-int consultar() 										 		// FUNÇÃO CONSULTAR;
+int consultar() 					// FUNÇÃO CONSULTAR;
 {
 	setlocale(LC_ALL,"Portuguese");
 	
@@ -70,13 +89,13 @@ int consultar() 										 		// FUNÇÃO CONSULTAR;
 	scanf("%s",cpf);                                     // pega o cpf digitado 
 			
 	FILE *file;											// vai nos arquivos e encontra o 'arquivo'
-	file = fopen(cpf,"r");	// abre o cpf para ler ' r '
+	file = fopen(cpf,"r");								// abre o cpf para ler ' r '
 			
-	if (file == NULL)  //SE Nexistir faça...
+	if (file == NULL) 									//SE Nexistir faça...
 	{
 		printf("Arquivo não localizado!\n");
 	}
-	while(fgets(conteudo, 200, file) != NULL)	//senão		
+	while(fgets(conteudo, 200, file) != NULL)			//senão		
 	{
 		printf("\n Essas são as informações do usuário:");
 		printf("%s", conteudo);
@@ -86,7 +105,7 @@ int consultar() 										 		// FUNÇÃO CONSULTAR;
 	system("pause");
 				
 }
-int deletar() 													// FUNÇÃO DELETAR;
+int deletar() 				// FUNÇÃO DELETAR;
 {
 	char cpf[40];
 		
@@ -96,9 +115,9 @@ int deletar() 													// FUNÇÃO DELETAR;
 	remove(cpf);
 		
 	FILE *file;         							//Função responsável pela biblioteca de arquivamento : FILE  // Parâmentro 'arquivo': file 
-	file = fopen(cpf,"r");     // abrir e ler o arquivo
+	file = fopen(cpf,"r");    						// abrir e ler o arquivo
 	
-	if(file == NULL) //se n existir
+	if(file == NULL) 								//se n existir
 	{
 		printf("O usuário não se encontra no sistema!  \n");
 		system("pause");
@@ -109,17 +128,17 @@ int deletar() 													// FUNÇÃO DELETAR;
 
 }
 
-int main()   								   				 // 	FUNÇÃO PRINCIPAL 
+int main()   			// 	FUNÇÃO PRINCIPAL 
 {
-	int opcao=0;                     //definindo variaveis
-	int x=1;                         // variavel 'laço' de repetição do programa
-	
-	for(x=1;x=1;)                     // definindo o FOR e sua condição para repetir ''enquanto o x for 1 :repetir''
+	int opcao=0;                     				//definindo variaveis
+	int x=1;                         				// variavel 'laço' de repetição do programa
+		
+	for(x=1;x=1;)                    				 // definindo o FOR e sua condição para repetir ''enquanto o x for 1 :repetir''
 	{
 		system("cls");
-		setlocale(LC_ALL,"Portuguese");                        // definindo o idioma do texto
+		setlocale(LC_ALL,"Portuguese");             // definindo o idioma do texto
 	
-    	printf("### Cartório da EBAC ###\n\n");                //menu
+    	printf("### Cartório da EBAC ###\n\n");     //menu
     	printf("escolha uma opção desejada no menu\n");
     	printf("\t1 - registrar nomes\n");
     	printf("\t2 - Consultar nomes\n");
