@@ -11,9 +11,10 @@ int registro() 				   // FUNÇÃO REGISTRAR;
 	char nome[40];
 	char sobrenome[40];
 	char cargo[40];
-  	int opcao=0;
+  	char opcao []="a";
+ 	int pergunta;
  	
-	
+ 	printf("Registro\n\n");	
 	printf("Digite o CPF a ser cadastrado: ");
 	scanf("%s",cpf);	       							// %S_tring
 			
@@ -57,6 +58,21 @@ int registro() 				   // FUNÇÃO REGISTRAR;
 	fprintf(file,cargo);
 	fclose(file);	
 	
+	printf("\n Continuar registrando?\n");	
+	printf("Digite S para continuar \n");
+	printf("pressione qualquer tecla para voltar ao menu \n");			//retornar ao menu 
+	system("pause");
+	scanf("%s",opcao);
+	
+	pergunta = strcmp(opcao,"s");
+	if (pergunta == 0)
+	{
+		system("cls");
+		registro();				
+	}
+	else
+		return (0) ;
+		
 }
 int consultar() 			// FUNÇÃO CONSULTAR;
 {
@@ -105,29 +121,46 @@ int deletar() 				// FUNÇÃO DELETAR;
 		fclose(file);		
 	}							
 
+		
+
 }
 
 int main()   			// 	FUNÇÃO PRINCIPAL 
 {
 	int opcao=0;                     					//definindo variaveis
-	int x=1;   										// variavel 'laço' de repetição do programa
-    
-	for(x=1;x=1;)                    				 	// definindo o FOR e sua condição para repetir ''enquanto o x for 1 :repetir''
+	int x=1;      										// variavel 'laço' de repetição do programa
+	char senhadigitada[10]="a";
+	int comparacao;
+	
+	setlocale(LC_ALL,"Portuguese"); 
+	
+	printf("### Cartório da EBAC ###\n\n");
+	printf("Digite a senha do administrador \n\n");   
+	scanf("%s",senhadigitada);  
+	comparacao = strcmp(senhadigitada, "admin");		// compara o valor de alocação das variaveis, se for (=) retorna 0 
+	
+	
+	if (comparacao == 0)
 	{
-		system("cls");
-		setlocale(LC_ALL,"Portuguese");             	// definindo o idioma do texto
-		printf("### Cartório da EBAC ###\n\n");     	
-    	printf("escolha uma opção desejada no menu\n");
-   		printf("\t1 - registrar nomes\n");
-   		printf("\t2 - Consultar nomes\n");
-   		printf("\t3 - Deletar nomes\n\n");              
-   		printf("         .");
+	                					
+		
+		for(x=1;x=1;)                    				 	// definindo o FOR e sua condição para repetir ''enquanto o x for 1 :repetir''
+		{
+			system("cls");
+			setlocale(LC_ALL,"Portuguese");             	// definindo o idioma do texto
+	
+    		printf("### Cartório da EBAC ###\n\n");     	
+    		printf("escolha uma opção desejada no menu\n");
+    		printf("\t1 - registrar nomes\n");
+    		printf("\t2 - Consultar nomes\n");
+    		printf("\t3 - Deletar nomes\n\n");              
+    		printf("         .");
     	
-		scanf("%d", &opcao);           				//armazenando a escolha do usuario
-		system("cls");
+			scanf("%d", &opcao);           				//armazenando a escolha do usuario
+			system("cls");
     		
-   		switch(opcao)   									// inicio da condição ( VAR inserida)
- 		{
+    		switch(opcao)   									// inicio da condição ( VAR inserida)
+   			{
     		case 1:
     		registro(); 									// chamando função
     		break;
@@ -142,9 +175,13 @@ int main()   			// 	FUNÇÃO PRINCIPAL
 			system("pause");	
 			break;
 		
-		} //switch..
-	} // for..
-     
+			} //switch..
+		} // for..
+    } //if senha
+    else
+    	system("cls");	
+		printf("senha incorreta!");	
+		main();
 }  //main..
 		
 	  
