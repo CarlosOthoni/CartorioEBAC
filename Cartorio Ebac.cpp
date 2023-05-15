@@ -109,22 +109,27 @@ int deletar() 				// FUNÇÃO DELETAR;
 	setlocale(LC_ALL,"Portuguese");	
 	printf("Digite o CPF do USUÁRIO a ser DELETADO: ");
 	scanf("%s",cpf);
-	remove(cpf);
-		
-	FILE *file;         								//Função responsável pela biblioteca de arquivamento : FILE  // Parâmentro 'arquivo': file 
-	file = fopen(cpf,"r");    							// abrir e ler o arquivo
 	
-	if(file == NULL) 									//se n existir
+	FILE *file;         								//Função responsável pela biblioteca de arquivamento : FILE  // Parâmentro 'arquivo': file 
+	file = fopen(cpf,"r");	
+	fclose(file);									
+	if (file != NULL)									//se n existir
 	{
-		printf("O usuário não se encontra no sistema!  \n");
+		remove(cpf);
+		printf("Usuário apagado com sucesso\n\n");
 		system("pause");
-		fclose(file);		
-	}							
-
-		
-
+		return(0);
+	}
+	else
+		printf("Usuário não encontrado\n\n");
+		system("pause");
+		fclose(file);
+		printf("Digite um usuário existente no sistema.\n\n");
+		system("pause");
+		system("cls");
+		return(0);
+	
 }
-
 int main()   			// 	FUNÇÃO PRINCIPAL 
 {
 	int opcao=0;                     					//definindo variaveis
