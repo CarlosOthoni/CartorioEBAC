@@ -158,7 +158,9 @@ int main()   			// 	FUNÇÃO PRINCIPAL
     		printf("escolha uma opção desejada no menu\n");
     		printf("\t1 - registrar nomes\n");
     		printf("\t2 - Consultar nomes\n");
-    		printf("\t3 - Deletar nomes\n\n");              
+    		printf("\t3 - Deletar nomes\n\n");
+			printf("\t4 - EXIT\n\n");   
+			            
     		printf("         .");
     	
 			scanf("%d", &opcao);           				//armazenando a escolha do usuario
@@ -174,6 +176,9 @@ int main()   			// 	FUNÇÃO PRINCIPAL
 			break;
 			case 3:
 			deletar(); 										//chamando função
+			break;
+			case 4:
+			return(0);
 			break;
 			default: 										// procedimento padrão para 'erro de opção inserida'
 			printf("Essa opção não está disponível\n");
